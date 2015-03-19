@@ -3,6 +3,7 @@
 use Greengo\Http\Requests;
 use Greengo\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Greengo\Models\Bug;
 
 class BugsController extends Controller {
 
@@ -13,7 +14,8 @@ class BugsController extends Controller {
 	 */
 	public function index()
 	{
-		return view('bugs.index');
+		$bugs = Bug::all();
+		return view('bugs.index', compact('bugs'));
 	}
 
 	/**
@@ -23,7 +25,7 @@ class BugsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('bugs.create');
 	}
 
 	/**
@@ -33,7 +35,10 @@ class BugsController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$input = \Request::all();
+		Bug::create($input);
+
+		return redirect('bugs');
 	}
 
 	/**
@@ -44,7 +49,9 @@ class BugsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$bug = Bug::findOrFail($id);
+
+		return view('bugs.show', compact('bug'));
 	}
 
 	/**
@@ -55,7 +62,9 @@ class BugsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$bug = Bug::findOrFail($id);
+
+		return view('bugs.edit', compact('bug'));
 	}
 
 	/**
@@ -77,7 +86,9 @@ class BugsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Bug::findOrFail($id)->delete();
+
+		return redirect('bugs');
 	}
 
 }

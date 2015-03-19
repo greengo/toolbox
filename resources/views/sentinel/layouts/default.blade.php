@@ -51,8 +51,27 @@
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
 				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
-					<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ action('\\Sentinel\Controllers\UserController@index') }}">Users</a></li>
-					<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ action('\\Sentinel\Controllers\GroupController@index') }}">Groups</a></li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bugs <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@index') }}">Active Bugs</a></li>
+						<li {{ (Request::is('bugs.create*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@create') }}">Report Bug</a></li>
+					</ul>
+				</li>
+
+					@if(Sentry::getUser()->hasAccess('superadmin'))
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ action('\\Sentinel\Controllers\UserController@index') }}">Users</a></li>
+							<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ action('\\Sentinel\Controllers\GroupController@index') }}">Groups</a></li>
+						</ul>
+					</li>
+
+					@endif
+
 				@endif
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
