@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Greengo
+        psr4_prefix: Greengo
+        src_path: app
