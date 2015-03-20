@@ -55,8 +55,12 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bugs <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@index') }}">Active Bugs</a></li>
-						<li {{ (Request::is('bugs.create*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@create') }}">Report Bug</a></li>
+						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@index') }}">Open</a></li>
+						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@indexPending') }}">Pending Approval</a></li>
+						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@indexClosed') }}">Closed</a></li>
+						<li {{ (Request::is('bugs.user*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@indexBy', [Sentry::getUser()->id]) }}">Bugs I Reported</a></li>
+						<li {{ (Request::is('bugs.user*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@indexAssigned', [Sentry::getUser()->id]) }}">Bugs Assigned to Me</a></li>
+						<li {{ (Request::is('bugs.create*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@create') }}">Report New Bug</a></li>
 					</ul>
 				</li>
 

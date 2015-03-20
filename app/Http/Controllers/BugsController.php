@@ -4,6 +4,8 @@ use Greengo\Http\Requests;
 use Greengo\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Greengo\Models\Bug;
+use Greengo\Http\Requests\BugRequest;
+
 
 class BugsController extends Controller {
 
@@ -18,11 +20,79 @@ class BugsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($active = 1)
 	{
-		$bugs = Bug::all();
+		$bugs = Bug::where('closed', '=', 0)->get();
 		return view('bugs.index', compact('bugs'));
 	}
+
+	public function indexStatus($status = null)
+	{
+		if(!is_null($status)){
+			$bugs = Bug::where('status', '=', $status)->get();
+		} else {
+			$bugs = Bug::where('closed', '=', 0)->get();
+		}
+		return view('bugs.index', compact('bugs'));
+	}
+
+	public function indexBy($user = null)
+	{
+		if(!is_null($user))
+		{
+			$bugs = Bug::where('created_by', '=', $user)->get();
+
+			return view('bugs.index', compact('bugs'));
+		} else
+		{
+			return redirect()->back();
+		}
+	}
+
+	public function indexAssigned($user = null)
+	{
+		if(!is_null($user))
+		{
+			$bugs = Bug::where('created_by', '=', $user)->get();
+
+			return view('bugs.index', compact('bugs'));
+		} else
+		{
+			return redirect()->back();
+		}
+	}
+
+	public function indexPending()
+	{
+
+		$bugs = Bug::where('closed', '=', 0)->whereNotNull('status')->get();
+
+
+		return view('bugs.index', compact('bugs'));
+	}
+
+	public function indexClosed()
+	{
+
+		$bugs = Bug::where('closed', '=', 1)->get();
+
+
+		return view('bugs.index', compact('bugs'));
+	}
+
+	public function close($id)
+	{
+		Bug::findOrFail($id)->close();
+		return redirect()->back();
+	}
+
+	public function open($id)
+	{
+		Bug::findOrFail($id)->open();
+		return redirect()->back();
+	}
+
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -39,7 +109,7 @@ class BugsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Requests\CreateBugRequest $request)
+	public function store(BugRequest $request)
 	{
 
 		Bug::create($request->all());
@@ -79,9 +149,13 @@ class BugsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, BugRequest $request)
 	{
-		//
+		$bug = Bug::findOrFail($id);
+
+		$bug->update($request->all());
+
+		return redirect('bugs');
 	}
 
 	/**

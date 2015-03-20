@@ -2,7 +2,7 @@
 
 use Greengo\Http\Requests\Request;
 
-class CreateBugRequest extends Request {
+class BugRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -21,7 +21,7 @@ class CreateBugRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
+		$rules = [
 			'title' => 'required',
 			'repro_steps' => 'required',
 			'expected_behaviour' => 'required',
@@ -30,6 +30,17 @@ class CreateBugRequest extends Request {
 			'assigned_to' => 'required',
 			'project' => 'required'
 		];
+
+		// If you need to change rules based on routes or something, do like this:
+		if (Request::isMethod('patch'))
+		{
+			$rules = null;
+			$rules = [
+				'status' => 'required'
+			];
+		}
+
+		return $rules;
 	}
 
 }

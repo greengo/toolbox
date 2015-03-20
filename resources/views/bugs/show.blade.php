@@ -29,7 +29,10 @@ Home
                 <tr><td>Date Created</td><td>{{ $bug->created_at }}</td></tr>
                 <tr><td>Created By</td><td>{{ Greengo\User::findOrFail($bug->created_by)->FullName }}</td></tr>
                 <tr><td>Assigned To</td><td>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }}</td></tr>
-                <tr><td>Status</td><td>{{ $bug->status }}</td></tr>
+                <tr><td>Status</td><td>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td></tr>
+
+
+
                 <tr><td>Steps To Reproduce</td><td>{{ $bug->repro_steps }}</td></tr>
                 <tr><td>Expected Behaviour</td><td>{{ $bug->expected_behaviour }}</td></tr>
                 <tr><td>Observed Behaviour</td><td>{{ $bug->observed_behaviour }}</td></tr>
@@ -39,10 +42,48 @@ Home
         </table>
     </div>
     <div class='btn-group'>
-        <a class='btn btn-primary' href="{{ route('bugs.edit', [$bug->id]) }}">Edit Bug</a>
+        @if ($bug->created_by == Sentry::getUser()->id)
+          <a class='btn btn-primary' href="{{ route('bugs.edit', [$bug->id]) }}">Edit Bug</a>
+        @endif
+        @if ($bug->assigned_to == Sentry::getUser()->id)
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusForm">Set Status</button>
+        @endif
+
     </div>
   </div>
 </div>
 
-
 @stop
+
+<!-- Modal -->
+<div class="modal fade" id="statusForm" tabindex="-1" role="dialog" aria-labelledby="Set Status" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        {!! Form::model($bug, array('method' => 'PATCH', 'action' => ['BugsController@update', $bug->id], 'class' => 'cmxform form-horizontal')) !!}
+
+        <div class="form-group @if ($errors->has('project')) has-error @endif">
+            {!! Form::label('status', 'Project:', array('class' => 'control-label col-lg-3')) !!}
+            <div class="col-lg-6">
+              {!! Form::select('status', [null => 'Please Select'] + Greengo\Models\BugStatus::all()->lists('title', 'id'), null, array('class' => 'form-control')) !!}
+              {{ ($errors->has('status') ?  $errors->first('status') : '') }}
+            </div>
+        </div>
+
+        @include('errors.list')
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
+          {!! Form::submit('Save Status', array('class' => 'btn btn-primary')) !!}
+        {!! Form::close() !!}
+      </div>
+    </div>
+  </div>
+</div>

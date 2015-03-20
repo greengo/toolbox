@@ -12,4 +12,17 @@ class Bug extends Model {
 	protected $fillable = ['created_by', 'title', 'repro_steps', 'expected_behaviour', 'observed_behaviour', 'assigned_to', 'status', 'project', 'software_version'];
 
 
+	public function close()
+	{
+		$this->closed = true;
+		$this->save();
+	}
+
+	public function open()
+	{
+		$this->closed = false;
+		$this->save();
+	}
+
+
 }
