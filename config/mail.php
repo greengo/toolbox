@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => ['address' => 'it@greengoenergy.dk', 'name' => 'GreenGo Energy A/S'],
 
 	/*
 	|--------------------------------------------------------------------------
