@@ -26,8 +26,8 @@ View Bug
         <p><b>Assigned To: </b>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }}</p>
         <p><b>Status: </b>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td></tr>
         <p><b>Steps To Reproduce: </b>{!! nl2br($bug->repro_steps) !!}</p>
-        <p><b>Expected Behaviour: </b>{{ nl2br($bug->expected_behaviour) }}</p>
-        <p><b>Observed Behaviour: </b>{{ nl2br($bug->observed_behaviour) }}</p>
+        <p><b>Expected Behaviour: </b>{!! nl2br($bug->expected_behaviour) !!}</p>
+        <p><b>Observed Behaviour: </b>{!! nl2br($bug->observed_behaviour) !!}</p>
         <p><b>Closed: </b>@if(!$bug->closed) no @else yes @endif</p>
 
 
