@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Home
+View Bug
 @stop
 
 {{-- Content --}}

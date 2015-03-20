@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Edit Profile
+Edit Bug
 @stop
 
 {{-- Content --}}
