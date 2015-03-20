@@ -60,7 +60,7 @@
 					</ul>
 				</li>
 
-					{{--@if(Sentry::getUser()->hasAccess('superadmin'))--}}
+					@if(Sentry::getUser()->hasAccess('superadmin'))
 
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
@@ -70,7 +70,7 @@
 						</ul>
 					</li>
 
-					{{--@endif--}}
+					@endif
 
 				@endif
 	          </ul>
