@@ -7,6 +7,12 @@ use Greengo\Models\Bug;
 
 class BugsController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('sentry.auth');
+	}
+
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -33,10 +39,10 @@ class BugsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\CreateBugRequest $request)
 	{
-		$input = \Request::all();
-		Bug::create($input);
+
+		Bug::create($request->all());
 
 		return redirect('bugs');
 	}

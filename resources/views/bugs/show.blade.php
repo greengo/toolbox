@@ -11,7 +11,7 @@ Home
 
 <div class="row">
     <div class='page-header'>
-        <h1>Bug Details</h1>
+        <h1>{{ $bug->title }}</h1>
     </div>
 </div>
 

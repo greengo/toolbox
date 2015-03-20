@@ -23,7 +23,7 @@ Bugs
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <thead>
-                <th>Observed Behaviour</th>
+                <th>Title</th>
                 <th>Project</th>
                 <th>Created By</th>
                 <th>Assigned To</th>
@@ -33,7 +33,7 @@ Bugs
             <tbody>
             @foreach ($bugs as $bug)
                 <tr>
-                    <td><a href="{{ action('BugsController@show', array($bug->id)) }}">{{ $bug->observed_behaviour }}</a></td>
+                    <td><a href="{{ action('BugsController@show', array($bug->id)) }}">{{ $bug->title }}</a></td>
                     <td>{{ Greengo\Models\Project::findOrFail($bug->project)->title }} </td>
                     <td>{{ Greengo\User::findOrFail($bug->created_by)->FullName }} </td>
                     <td>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }} </td>
