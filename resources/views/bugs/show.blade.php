@@ -11,15 +11,25 @@ View Bug
 
 <div class="row">
     <div class='page-header'>
+        <div class='btn-toolbar pull-right'>
+          <div class='btn-group'>
+              @if ($bug->created_by == Sentry::getUser()->id)
+                <a class='btn btn-primary' href="{{ route('bugs.edit', [$bug->id]) }}">Edit Bug</a>
+              @endif
+              @if ($bug->assigned_to == Sentry::getUser()->id)
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusForm">Set Status</button>
+              @endif
+          </div>
+        </div>
+
         <h1>{{ $bug->title }}</h1>
     </div>
 </div>
 
 
 <div class="row">
-  <div class="col-lg-10">
-    <div class="table-responsive">
-
+  <div class="col-lg-10 col-sm-10">
+    
         <p><b>Project: </b>{{ Greengo\Models\Project::findOrFail($bug->project)->title }}</p>
         <p><b>Date Created: </b>{{ $bug->created_at }}</p>
         <p><b>Created By: </b>{{ Greengo\User::findOrFail($bug->created_by)->FullName }}</p>
@@ -30,16 +40,6 @@ View Bug
         <p><b>Observed Behaviour: </b>{!! nl2br($bug->observed_behaviour) !!}</p>
         <p><b>Closed: </b>@if(!$bug->closed) no @else yes @endif</p>
 
-
-    <div class='btn-group'>
-        @if ($bug->created_by == Sentry::getUser()->id)
-          <a class='btn btn-primary' href="{{ route('bugs.edit', [$bug->id]) }}">Edit Bug</a>
-        @endif
-        @if ($bug->assigned_to == Sentry::getUser()->id)
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusForm">Set Status</button>
-        @endif
-
-    </div>
   </div>
 </div>
 

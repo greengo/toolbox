@@ -48,9 +48,10 @@ Bugs
                         @elseif($bug->closed == 1)
                           <button class="btn btn-default" type="button" onClick="location.href='{{ action('BugsController@open', array($bug->id)) }}'">Open</button>
                         @endif
+                          <button class="btn btn-default" type="button" onClick="location.href='{{ action('BugsController@edit', array($bug->id)) }}'">Edit</button>
+                          <button class="btn btn-default action_confirm" href="{{ action('BugsController@destroy', array($bug->id)) }}" data-token="{{ Session::getToken() }}" data-method="delete">Delete</button>
                       @endif
 
-                      <button class="btn btn-default action_confirm" href="{{ action('BugsController@destroy', array($bug->id)) }}" data-token="{{ Session::getToken() }}" data-method="delete">Delete</button>
 
                     </td>
                 </tr>
