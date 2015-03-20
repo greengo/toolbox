@@ -14,6 +14,11 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+		// sentinel seeds
+		$this->call('SentryGroupSeeder');
+		$this->call('SentryUserSeeder');
+		$this->call('SentryUserGroupSeeder');
+
 		// $this->call('UserTableSeeder');
 		$this->call('BugStatusTableSeeder');
 		$this->call('ProjectTableSeeder');

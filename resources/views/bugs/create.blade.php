@@ -36,6 +36,13 @@ Report Bug
                     </div>
                 </div>
 
+                <div class="form-group @if ($errors->has('title')) has-error @endif">
+                    {!! Form::label('title', 'Title:', array('class' => 'control-label col-lg-3')) !!}
+                    <div class="col-lg-6">
+                      {!! Form::text('title', null, array('class' => 'form-control')) !!}
+                      {{ ($errors->has('title') ?  $errors->first('title') : '') }}
+                    </div>
+                </div>
 
                 <div class="form-group @if ($errors->has('repro_steps')) has-error @endif">
                     {!! Form::label('repro_steps', 'Steps to reproduce the error:', array('class' => 'control-label col-lg-3')) !!}

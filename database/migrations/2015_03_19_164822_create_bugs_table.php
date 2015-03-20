@@ -15,6 +15,7 @@ class CreateBugsTable extends Migration {
 		Schema::create('bugs', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('title');
 			$table->integer('created_by');
 			$table->text('repro_steps');
 			$table->text('expected_behaviour');
