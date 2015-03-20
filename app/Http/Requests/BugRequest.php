@@ -35,9 +35,8 @@ class BugRequest extends Request {
 		if (Request::isMethod('patch'))
 		{
 			$rules = null;
-			$rules = [
-				'status' => 'required'
-			];
+			$rules = [];
+
 		}
 
 		return $rules;

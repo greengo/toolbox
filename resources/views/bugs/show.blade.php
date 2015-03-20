@@ -19,28 +19,18 @@ Home
 <div class="row">
   <div class="col-lg-10">
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead>
-                <th>Key</th>
-                <th>Value</th>
-            </thead>
-            <tbody>
-                <tr><td>Project</td><td>{{ Greengo\Models\Project::findOrFail($bug->project)->title }}</td></tr>
-                <tr><td>Date Created</td><td>{{ $bug->created_at }}</td></tr>
-                <tr><td>Created By</td><td>{{ Greengo\User::findOrFail($bug->created_by)->FullName }}</td></tr>
-                <tr><td>Assigned To</td><td>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }}</td></tr>
-                <tr><td>Status</td><td>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td></tr>
+
+        <p><b>Project: </b>{{ Greengo\Models\Project::findOrFail($bug->project)->title }}</p>
+        <p><b>Date Created: </b>{{ $bug->created_at }}</p>
+        <p><b>Created By: </b>{{ Greengo\User::findOrFail($bug->created_by)->FullName }}</p>
+        <p><b>Assigned To: </b>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }}</p>
+        <p><b>Status: </b>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td></tr>
+        <p><b>Steps To Reproduce: </b>{!! nl2br($bug->repro_steps) !!}</p>
+        <p><b>Expected Behaviour: </b>{{ nl2br($bug->expected_behaviour) }}</p>
+        <p><b>Observed Behaviour: </b>{{ nl2br($bug->observed_behaviour) }}</p>
+        <p><b>Closed: </b>@if(!$bug->closed) no @else yes @endif</p>
 
 
-
-                <tr><td>Steps To Reproduce</td><td>{{ $bug->repro_steps }}</td></tr>
-                <tr><td>Expected Behaviour</td><td>{{ $bug->expected_behaviour }}</td></tr>
-                <tr><td>Observed Behaviour</td><td>{{ $bug->observed_behaviour }}</td></tr>
-                <tr><td>Closed</td><td>@if(!$bug->closed) no @else yes @endif</td></tr>
-
-            </tbody>
-        </table>
-    </div>
     <div class='btn-group'>
         @if ($bug->created_by == Sentry::getUser()->id)
           <a class='btn btn-primary' href="{{ route('bugs.edit', [$bug->id]) }}">Edit Bug</a>
