@@ -29,6 +29,7 @@ class Kernel extends HttpKernel {
 		'guest' => 'Greengo\Http\Middleware\RedirectIfAuthenticated',
 		'sentry.auth' => 'Sentinel\Middleware\SentryAuth',
     'sentry.admin' => 'Sentinel\Middleware\SentryAdminAccess',
+		'sentry.superadmin' => 'Greengo\Http\Middleware\SentrySuperadminAccess',
 	];
 
 }

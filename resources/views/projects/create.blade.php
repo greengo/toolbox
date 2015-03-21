@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Report Bug
+Create Project
 @stop
 
 {{-- Content --}}
@@ -12,15 +12,15 @@ Report Bug
     <div class="col-lg-10">
 
 
-            <h2>New Bug</h2>
+            <h2>New Project</h2>
 
             <div class="form">
-              {!! Form::open(array('route' => 'bugs.store', 'class' => 'cmxform form-horizontal')) !!}
+              {!! Form::open(array('route' => 'projects.store', 'class' => 'cmxform form-horizontal')) !!}
 
 
                 {!! Form::hidden('created_by', Sentry::getUser()->id) !!}
 
-                @include('bugs._form', ['submitText' => 'Save Bug'])
+                @include('projects._form', ['submitText' => 'Save Project'])
 
             {!! Form::close() !!}
           </div>

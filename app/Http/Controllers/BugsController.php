@@ -20,7 +20,7 @@ class BugsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($active = 1)
+	public function index()
 	{
 		$bugs = Bug::where('closed', '=', 0)->get();
 		return view('bugs.index', compact('bugs'));

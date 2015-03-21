@@ -26,3 +26,6 @@ Route::get('bugs/{bugs}/close', ['as' => 'bugs.close', 'uses' => 'BugsController
 Route::get('bugs/{bugs}/open', ['as' => 'bugs.open', 'uses' => 'BugsController@open']);
 
 Route::resource('bugs', 'BugsController');
+
+
+Route::resource('projects', 'ProjectsController');

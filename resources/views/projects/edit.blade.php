@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-Edit Bug
+Edit Project
 @stop
 
 {{-- Content --}}
@@ -12,12 +12,12 @@ Edit Bug
     <div class="col-lg-10">
 
 
-            <h2>Edit Bug</h2>
+            <h2>Edit Project</h2>
 
             <div class="form">
-              {!! Form::model($bug, ['method' => 'PATCH', 'action' => ['BugsController@update', $bug->id], 'class' => 'cmxform form-horizontal']) !!}
+              {!! Form::model($project, ['method' => 'PATCH', 'action' => ['ProjectsController@update', $project->id], 'class' => 'cmxform form-horizontal']) !!}
 
-                @include('bugs._form', ['submitText' => 'Update Bug'])
+                @include('projects._form', ['submitText' => 'Update Project'])
 
             {!! Form::close() !!}
           </div>
