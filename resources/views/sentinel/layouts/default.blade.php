@@ -64,13 +64,6 @@
 					</ul>
 				</li>
 
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\ProjectsController@index') }}">All</a></li>
-					</ul>
-				</li>
-
 					@if(Sentry::getUser()->hasAccess('superadmin'))
 
 					<li class="dropdown">
@@ -78,6 +71,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ action('\\Sentinel\Controllers\UserController@index') }}">Users</a></li>
 							<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ action('\\Sentinel\Controllers\GroupController@index') }}">Groups</a></li>
+							<li {{ (Request::is('projects*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\ProjectsController@index') }}">All</a></li>
 						</ul>
 					</li>
 
