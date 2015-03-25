@@ -22,6 +22,14 @@
     </div>
 </div>
 
+<div class="form-group @if ($errors->has('priority')) has-error @endif">
+    {!! Form::label('priority', 'Priority:', array('class' => 'control-label col-lg-3')) !!}
+    <div class="col-lg-6">
+      {!! Form::select('priority', ['low', 'normal', 'high'], 'low', ['class' => 'form-control']) !!}
+      {{ ($errors->has('priority') ?  $errors->first('priority') : '') }}
+    </div>
+</div>
+
 <div class="form-group @if ($errors->has('repro_steps')) has-error @endif">
     {!! Form::label('repro_steps', 'Steps to reproduce the error:', array('class' => 'control-label col-lg-3')) !!}
     <div class="col-lg-6">
