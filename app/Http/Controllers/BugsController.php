@@ -53,7 +53,7 @@ class BugsController extends Controller {
 	{
 		if(!is_null($user))
 		{
-			$bugs = Bug::where('created_by', '=', $user)->get();
+			$bugs = Bug::where('assigned_to', '=', $user)->get();
 
 			return view('bugs.index', compact('bugs'));
 		} else

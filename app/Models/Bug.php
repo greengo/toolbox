@@ -9,7 +9,7 @@ class Bug extends Model {
 	*
 	* @var array
 	*/
-	protected $fillable = ['created_by', 'title', 'repro_steps', 'expected_behaviour', 'observed_behaviour', 'assigned_to', 'status', 'project', 'software_version'];
+	protected $fillable = ['created_by', 'title', 'priority', 'repro_steps', 'expected_behaviour', 'observed_behaviour', 'assigned_to', 'status', 'project', 'software_version'];
 
 
 	public function close()

@@ -25,7 +25,7 @@
 <div class="form-group @if ($errors->has('priority')) has-error @endif">
     {!! Form::label('priority', 'Priority:', array('class' => 'control-label col-lg-3')) !!}
     <div class="col-lg-6">
-      {!! Form::select('priority', ['low', 'normal', 'high'], 'low', ['class' => 'form-control']) !!}
+      {!! Form::select('priority', [3 => 'low', 2 => 'normal', 1 => 'high'], null, ['class' => 'form-control']) !!}
       {{ ($errors->has('priority') ?  $errors->first('priority') : '') }}
     </div>
 </div>

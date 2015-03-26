@@ -27,6 +27,7 @@ Bugs
             <thead>
                 <th>Title</th>
                 <th>Project</th>
+                <th>Priority</th>
                 <th>Created By</th>
                 <th>Assigned To</th>
                 <th>Status</th>
@@ -37,6 +38,7 @@ Bugs
                 <tr>
                     <td><a href="{{ action('BugsController@show', array($bug->id)) }}">{{ $bug->title }}</a></td>
                     <td>{{ Greengo\Models\Project::findOrFail($bug->project)->title }} </td>
+                    <td>{{ $bug->priority }} </td>
                     <td>{{ Greengo\User::findOrFail($bug->created_by)->FullName }} </td>
                     <td>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }} </td>
                     <td>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td>

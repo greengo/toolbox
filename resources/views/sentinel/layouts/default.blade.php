@@ -71,7 +71,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ action('\\Sentinel\Controllers\UserController@index') }}">Users</a></li>
 							<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ action('\\Sentinel\Controllers\GroupController@index') }}">Groups</a></li>
-							<li {{ (Request::is('projects*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\ProjectsController@index') }}">All</a></li>
+							<li {{ (Request::is('projects*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\ProjectsController@index') }}">Projects</a></li>
 						</ul>
 					</li>
 

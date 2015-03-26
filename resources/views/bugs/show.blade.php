@@ -29,11 +29,12 @@ View Bug
 
 <div class="row">
   <div class="col-lg-10 col-sm-10">
-    
+
         <p><b>Project: </b>{{ Greengo\Models\Project::findOrFail($bug->project)->title }}</p>
         <p><b>Date Created: </b>{{ $bug->created_at }}</p>
         <p><b>Created By: </b>{{ Greengo\User::findOrFail($bug->created_by)->FullName }}</p>
         <p><b>Assigned To: </b>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }}</p>
+        <p><b>Priority: </b>{{ $bug->priority }}</p>
         <p><b>Status: </b>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td></tr>
         <p><b>Steps To Reproduce: </b>{!! nl2br($bug->repro_steps) !!}</p>
         <p><b>Expected Behaviour: </b>{!! nl2br($bug->expected_behaviour) !!}</p>
