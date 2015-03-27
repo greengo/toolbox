@@ -23,7 +23,7 @@ Bugs
 
   @if( count($bugs) > 0 )
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table id="example" class="table table-striped table-hover">
             <thead>
                 <th>Title</th>
                 <th>Project</th>
@@ -66,4 +66,18 @@ Bugs
     @endif
 
 </div>
+@stop
+
+@section('js')
+
+<script src="{{ asset('//code.jquery.com/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ asset('//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js') }}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    console.log('lets rock!');
+  });
+
+</script>
 @stop

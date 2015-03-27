@@ -115,5 +115,6 @@
 		<script src="{{ asset('packages/rydurham/sentinel/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('packages/rydurham/sentinel/js/restfulizer.js') }}"></script>
 		<!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
+		@yield('js')
 	</body>
 </html>
