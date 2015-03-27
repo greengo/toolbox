@@ -43,7 +43,7 @@ Bugs
                 <th>Created By</th>
                 <th>Assigned To</th>
                 <th>Status</th>
-                <th class="col-md-2">Options</th>
+                <th>Options</th>
             </thead>
             <tbody>
             @foreach ($bugs as $bug)
