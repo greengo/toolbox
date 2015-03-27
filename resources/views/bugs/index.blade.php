@@ -6,6 +6,18 @@
 Bugs
 @stop
 
+@section('css')
+
+<link rel="stylesheet" href="{{ asset('//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css') }}">
+
+<style>
+  body { font-size: 140%; }
+</style>
+
+@stop
+
+
 {{-- Content --}}
 @section('content')
 <div class="row">
@@ -77,6 +89,7 @@ Bugs
 <script type="text/javascript">
   $(document).ready(function(){
     console.log('lets rock!');
+    $('#example').dataTable();
   });
 
 </script>

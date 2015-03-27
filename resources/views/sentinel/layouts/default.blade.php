@@ -17,7 +17,7 @@
 		<!-- Optional theme -->
 		<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"> -->
 		<link rel="stylesheet" href="{{ asset('packages/rydurham/sentinel/css/bootstrap-theme.min.css') }}">
-
+		@yield('css')
 		<style>
 		@section('styles')
 			body {
