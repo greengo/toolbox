@@ -37,13 +37,13 @@ Bugs
     <div class="table-responsive">
         <table id="example" class="table table-striped table-hover">
             <thead>
-                <th>Title</th>
+                <th style="width:20%">Title</th>
                 <th>Project</th>
                 <th>Priority</th>
                 <th>Created By</th>
                 <th>Assigned To</th>
                 <th>Status</th>
-                <th>Options</th>
+                <th style="width:20%">Options</th>
             </thead>
             <tbody>
             @foreach ($bugs as $bug)
