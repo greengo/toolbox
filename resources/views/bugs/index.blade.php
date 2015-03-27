@@ -54,7 +54,7 @@ Bugs
                     <td>{{ Greengo\User::findOrFail($bug->created_by)->FullName }} </td>
                     <td>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }} </td>
                     <td>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td>
-                    <td>
+                    <td><div class="btn-group">
 
                       @if ($bug->created_by == Sentry::getUser()->id)
                         @if ($bug->closed == 0)
@@ -66,7 +66,7 @@ Bugs
                           <button class="btn btn-default action_confirm" href="{{ action('BugsController@destroy', array($bug->id)) }}" data-token="{{ Session::getToken() }}" data-method="delete">Delete</button>
                       @endif
 
-
+                      </div>
                     </td>
                 </tr>
             @endforeach
