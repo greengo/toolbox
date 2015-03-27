@@ -22,7 +22,7 @@ class BugsController extends Controller {
 	 */
 	public function index()
 	{
-		$bugs = Bug::where('closed', '=', 0)->get();
+		$bugs = Bug::where('closed', '=', 0)->where('status', '=', 0)->get();
 		return view('bugs.index', compact('bugs'));
 	}
 
