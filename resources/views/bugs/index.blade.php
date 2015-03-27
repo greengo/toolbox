@@ -54,7 +54,7 @@ Bugs
                     <td>{{ Greengo\User::findOrFail($bug->created_by)->FullName }} </td>
                     <td>{{ Greengo\User::findOrFail($bug->assigned_to)->FullName }} </td>
                     <td>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td>
-                    <td style="white-space: nowrap;"><div class="btn-group">
+                    <td><div class="btn-group text-nowrap">
 
                       @if ($bug->created_by == Sentry::getUser()->id)
                         @if ($bug->closed == 0)
