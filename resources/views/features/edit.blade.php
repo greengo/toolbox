@@ -17,7 +17,7 @@ Edit Feature
             <div class="form">
               {!! Form::model($feature, ['method' => 'PATCH', 'action' => ['FeaturesController@update', $feature->id], 'class' => 'cmxform form-horizontal']) !!}
 
-                @include('features._form', ['submitText' => 'Update Feature'])
+                @include('features._formcreate', ['submitText' => 'Update Feature'])
 
             {!! Form::close() !!}
           </div>
