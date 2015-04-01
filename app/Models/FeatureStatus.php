@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class BugStatus extends Model {
+class FeatureStatus extends Model {
 
-	protected $table = 'bug_statuses';
+	protected $table = 'feature_statuses';
 	protected $fillable = [
 		'title'
 	];

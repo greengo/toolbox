@@ -2,11 +2,12 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class BugStatus extends Model {
+class ProjectCategory extends Model {
 
-	protected $table = 'bug_statuses';
 	protected $fillable = [
-		'title'
+		'project_id',
+		'title',
+		'description'
 	];
 
 }

@@ -53,13 +53,32 @@
 				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 
 				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Features <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li {{ (Request::is('features*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\FeaturesController@index') }}">All</a></li>
+						{{--
+						<li><a href="#">Accepted</a></li>
+						<li><a href="#">Postponed</a></li>
+						<li><a href="#">Rejected</a></li>
+						<li class="divider"></li>
+						<li><a href="#">In Progress</a></li>
+						<li><a href="#">Finished</a></li>
+						--}}
+						<li class="divider"></li>
+						<li {{ (Request::is('features.create*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\FeaturesController@create') }}">Suggest Feature</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bugs <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@index') }}">Open</a></li>
 						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@indexPending') }}">Pending Approval</a></li>
 						<li {{ (Request::is('bugs*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@indexClosed') }}">Closed</a></li>
+						<li class="divider"></li>
 						<li {{ (Request::is('bugs.user*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@indexBy', [Sentry::getUser()->id]) }}">Bugs I Reported</a></li>
 						<li {{ (Request::is('bugs.user*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@indexAssigned', [Sentry::getUser()->id]) }}">Bugs Assigned to Me</a></li>
+						<li class="divider"></li>
 						<li {{ (Request::is('bugs.create*') ? 'class="active"' : '') }}><a href="{{ action('\\Greengo\Http\Controllers\BugsController@create') }}">Report New Bug</a></li>
 					</ul>
 				</li>
