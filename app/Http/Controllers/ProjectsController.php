@@ -4,6 +4,8 @@ use Greengo\Http\Requests;
 use Greengo\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Greengo\Models\Project;
+use Greengo\Models\Feature;
+use Greengo\Models\Bug;
 use Greengo\Http\Requests\ProjectRequest;
 
 class ProjectsController extends Controller {
@@ -11,6 +13,17 @@ class ProjectsController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('sentry.admin');
+	}
+
+
+	public function dashboard()
+	{
+		$data['projects'] = Project::all();
+		$data['features'] = Feature::all();
+		$data['bugs'] = Bug::all();
+
+
+		return view('dashboard', $data);
 	}
 
 

@@ -13,7 +13,7 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('home', ['as' => 'home', 'uses' => 'WelcomeController@index']);
+Route::get('home', ['as' => 'home', 'uses' => 'ProjectsController@dashboard']);
 
 Route::get('bugs/by/{user}', ['as' => 'bugs.index.by', 'uses' => 'BugsController@indexBy']);
 Route::get('bugs/assigned/{user}', ['as' => 'bugs.index.assigned', 'uses' => 'BugsController@indexAssigned']);
