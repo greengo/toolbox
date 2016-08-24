@@ -1,6 +1,6 @@
 <?php namespace Greengo\Http\Controllers;
 
-class HomeController extends Controller {
+class WelcomeController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
