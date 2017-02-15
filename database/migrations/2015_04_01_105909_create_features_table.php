@@ -18,13 +18,12 @@ class CreateFeaturesTable extends Migration {
 			$table->string('title');
 			$table->text('description');
 			$table->integer('created_by');
-			$table->integer('assigned_to');
+			$table->integer('assigned_to')->nullable();
 			$table->integer('project');
-			$table->integer('project_category');
-			$table->integer('priority');
+			$table->integer('priority')->nullable();
 			$table->integer('status')->nullable();
-			$table->integer('progress');
-			$table->string('software_version');
+			$table->integer('progress')->default(0);
+			$table->string('software_version')->nullable();
 			$table->boolean('closed')->default(0);
 			$table->timestamps();
 		});

@@ -1,10 +1,4 @@
-@extends(config('sentinel.layout'))
-
-{{-- Web site Title --}}
-@section('title')
-@parent
-Report Bug
-@stop
+@extends('layouts.app')
 
 {{-- Content --}}
 @section('content')
@@ -18,7 +12,7 @@ Report Bug
               {!! Form::open(array('route' => 'bugs.store', 'class' => 'cmxform form-horizontal')) !!}
 
 
-                {!! Form::hidden('created_by', Sentry::getUser()->id) !!}
+                {!! Form::hidden('created_by', Auth::user()->id) !!}
 
                 @include('bugs._form', ['submitText' => 'Save Bug'])
 

@@ -1,4 +1,4 @@
-@extends(config('sentinel.layout'))
+@extends('layouts.app')
 
 {{-- Web site Title --}}
 @section('title')
@@ -18,7 +18,7 @@ Suggest Feature
               {!! Form::open(array('route' => 'features.store', 'class' => 'cmxform form-horizontal')) !!}
 
 
-                {!! Form::hidden('created_by', Sentry::getUser()->id) !!}
+                {!! Form::hidden('created_by', Auth::user()->id) !!}
 
                 @include('features._formcreate', ['submitText' => 'Save Feature'])
 

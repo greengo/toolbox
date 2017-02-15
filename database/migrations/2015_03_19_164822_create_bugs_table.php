@@ -23,7 +23,7 @@ class CreateBugsTable extends Migration {
 			$table->integer('assigned_to');
 			$table->integer('status')->nullable();
 			$table->integer('project');
-			$table->string('software_version');
+			$table->string('software_version')->nullable();
 			$table->boolean('closed')->default(0);
 			$table->timestamps();
 		});

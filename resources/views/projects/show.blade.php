@@ -1,4 +1,4 @@
-@extends(config('sentinel.layout'))
+@extends('layouts.app')
 
 {{-- Web site Title --}}
 @section('title')

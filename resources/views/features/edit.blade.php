@@ -1,4 +1,4 @@
-@extends(config('sentinel.layout'))
+@extends('layouts.app')
 
 {{-- Web site Title --}}
 @section('title')
@@ -17,7 +17,7 @@ Edit Feature
             <div class="form">
               {!! Form::model($feature, ['method' => 'PATCH', 'action' => ['FeaturesController@update', $feature->id], 'class' => 'cmxform form-horizontal']) !!}
 
-                @include('features._formcreate', ['submitText' => 'Update Feature'])
+                @include('features._formedit', ['submitText' => 'Update Feature'])
 
             {!! Form::close() !!}
           </div>

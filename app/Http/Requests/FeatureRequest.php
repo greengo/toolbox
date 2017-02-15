@@ -1,39 +1,40 @@
-<?php namespace Greengo\Http\Requests;
+<?php
 
-use Greengo\Http\Requests\Request;
+namespace Greengo\Http\Requests;
 
-class FeatureRequest extends Request {
+use Illuminate\Foundation\Http\FormRequest;
 
-	/**
-	 * Determine if the user is authorized to make this request.
-	 *
-	 * @return bool
-	 */
-	public function authorize()
-	{
-		return true;
-	}
+class FeatureRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
 
-	/**
-	 * Get the validation rules that apply to the request.
-	 *
-	 * @return array
-	 */
-	public function rules()
-	{
-		$rules = [
-			'title' => 'required',
-			'project' => 'required'
-		];
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+      $rules = [
+        'title' => 'required',
+        'project' => 'required'
+      ];
 
-		// If you need to change rules based on routes or something, do like this:
-		if (Request::isMethod('patch'))
-		{
-			$rules = null;
-			$rules = [];
-		}
+      // If you need to change rules based on routes or something, do like this:
+      if (FeatureRequest::isMethod('patch'))
+      {
+        $rules = null;
+        $rules = [];
+      }
 
-		return $rules;
-	}
-
+      return $rules;
+    }
 }

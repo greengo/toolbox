@@ -17,7 +17,7 @@ $table->boolean('closed')->default(0);
 <div class="form-group @if ($errors->has('project')) has-error @endif">
     {!! Form::label('project', 'Project:', array('class' => 'control-label col-lg-3')) !!}
     <div class="col-lg-6">
-      {!! Form::select('project', [null => 'Please Select'] + Greengo\Models\Project::all()->lists('title', 'id'), null, array('class' => 'form-control')) !!}
+      {!! Form::select('project', [null => 'Please Select'] + Greengo\Models\Project::all()->pluck('title', 'id')->toArray(), null, array('class' => 'form-control')) !!}
       {{ ($errors->has('project') ?  $errors->first('project') : '') }}
     </div>
 </div>

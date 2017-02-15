@@ -1,10 +1,4 @@
-@extends(config('sentinel.layout'))
-
-{{-- Web site Title --}}
-@section('title')
-@parent
-Edit Bug
-@stop
+@extends('layouts.app')
 
 {{-- Content --}}
 @section('content')

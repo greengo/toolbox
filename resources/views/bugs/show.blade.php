@@ -1,10 +1,4 @@
-@extends(config('sentinel.layout'))
-
-{{-- Web site Title --}}
-@section('title')
-@parent
-View Bug
-@stop
+@extends('layouts.app')
 
 {{-- Content --}}
 @section('content')
@@ -13,10 +7,10 @@ View Bug
     <div class='page-header'>
         <div class='btn-toolbar pull-right'>
           <div class='btn-group'>
-              @if ($bug->created_by == Sentry::getUser()->id)
+              @if ($bug->created_by == Auth::user()->id)
                 <a class='btn btn-primary' href="{{ route('bugs.edit', [$bug->id]) }}">Edit Bug</a>
               @endif
-              @if ($bug->assigned_to == Sentry::getUser()->id)
+              @if ($bug->assigned_to == Auth::user()->id)
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusForm">Set Status</button>
               @endif
           </div>
@@ -60,7 +54,7 @@ View Bug
         <div class="form-group @if ($errors->has('project')) has-error @endif">
             {!! Form::label('status', 'Project:', array('class' => 'control-label col-lg-3')) !!}
             <div class="col-lg-6">
-              {!! Form::select('status', [null => 'Please Select'] + Greengo\Models\BugStatus::all()->lists('title', 'id'), null, array('class' => 'form-control')) !!}
+              {!! Form::select('status', [null => 'Please Select'] + Greengo\Models\BugStatus::all()->pluck('title', 'id')->toArray(), null, array('class' => 'form-control')) !!}
               {{ ($errors->has('status') ?  $errors->first('status') : '') }}
             </div>
         </div>

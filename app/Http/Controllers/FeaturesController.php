@@ -11,7 +11,7 @@ class FeaturesController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('sentry.auth');
+		$this->middleware('auth');
 	}
 
 	/**
@@ -21,7 +21,7 @@ class FeaturesController extends Controller {
 	 */
 	public function index()
 	{
-		$features = Feature::where('closed', '=', 0)->whereNull('status')->get();
+		$features = Feature::where('closed', '=', 0)->get();
 		return view('features.index', compact('features'));
 	}
 

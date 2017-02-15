@@ -1,23 +1,8 @@
 
-{{--
-$table->string('title');
-$table->text('description');
-$table->integer('created_by');
-$table->integer('assigned_to');
-$table->integer('project');
-$table->integer('project_category');
-$table->integer('priority');
-$table->integer('status')->nullable();
-$table->integer('progress');
-$table->string('software_version');
-$table->boolean('closed')->default(0);
---}}
-
-
 <div class="form-group @if ($errors->has('project')) has-error @endif">
     {!! Form::label('project', 'Project:', array('class' => 'control-label col-lg-3')) !!}
     <div class="col-lg-6">
-      {!! Form::select('project', [null => 'Please Select'] + Greengo\Models\Project::all()->lists('title', 'id'), null, array('class' => 'form-control')) !!}
+      {!! Form::select('project', [null => 'Please Select'] + Greengo\Models\Project::all()->pluck('title', 'id')->toArray(), null, array('class' => 'form-control')) !!}
       {{ ($errors->has('project') ?  $errors->first('project') : '') }}
     </div>
 </div>
@@ -59,10 +44,22 @@ $table->boolean('closed')->default(0);
 <div class="form-group @if ($errors->has('assigned_to')) has-error @endif">
     {!! Form::label('assigned_to', 'Assigned To:', array('class' => 'control-label col-lg-3')) !!}
     <div class="col-lg-6">
-      {!! Form::select('assigned_to', [null => 'Please Select'] + Greengo\User::all()->lists('FullName', 'id'), null, array('class' => 'form-control')) !!}
+      {!! Form::select('assigned_to', [null => 'Please Select'] + Greengo\User::all()->pluck('name', 'id')->toArray(), null, array('class' => 'form-control')) !!}
       {{ ($errors->has('assigned_to') ?  $errors->first('assigned_to') : '') }}
     </div>
 </div>
+
+@if(Auth::user()->id == $feature->assigned_to)
+
+<div class="form-group @if ($errors->has('status')) has-error @endif">
+    {!! Form::label('status', 'Status:', array('class' => 'control-label col-lg-3')) !!}
+    <div class="col-lg-6">
+      {!! Form::select('status', [null => 'Please Select'] + Greengo\Models\FeatureStatus::all()->pluck('title', 'id')->toArray(), null, array('class' => 'form-control')) !!}
+      {{ ($errors->has('status') ?  $errors->first('status') : '') }}
+    </div>
+</div>
+
+@endif
 
 
 

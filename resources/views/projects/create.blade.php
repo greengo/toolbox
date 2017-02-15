@@ -1,4 +1,4 @@
-@extends(config('sentinel.layout'))
+@extends('layouts.app')
 
 {{-- Web site Title --}}
 @section('title')
@@ -18,7 +18,7 @@ Create Project
               {!! Form::open(array('route' => 'projects.store', 'class' => 'cmxform form-horizontal')) !!}
 
 
-                {!! Form::hidden('created_by', Sentry::getUser()->id) !!}
+                {!! Form::hidden('created_by', Auth::user()->id) !!}
 
                 @include('projects._form', ['submitText' => 'Save Project'])
 

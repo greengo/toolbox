@@ -11,9 +11,8 @@ class BugsController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('sentry.auth');
+		$this->middleware('auth');
 	}
-
 
 	/**
 	 * Display a listing of the resource.
@@ -111,7 +110,7 @@ class BugsController extends Controller {
 	 */
 	public function store(BugRequest $request)
 	{
-
+		//dd($request->all());
 		Bug::create($request->all());
 
 		return redirect('bugs');

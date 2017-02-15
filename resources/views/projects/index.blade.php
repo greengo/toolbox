@@ -1,4 +1,4 @@
-@extends(config('sentinel.layout'))
+@extends('layouts.app')
 
 {{-- Web site Title --}}
 @section('title')
@@ -36,7 +36,7 @@ Projects
                     <td>{{ $project->description }} </td>
                     <td>
                           <button class="btn btn-default" type="button" onClick="location.href='{{ action('ProjectsController@edit', array($project->id)) }}'">Edit</button>
-                          <button class="btn btn-default action_confirm" href="{{ action('ProjectsController@destroy', array($project->id)) }}" data-token="{{ Session::getToken() }}" data-method="delete">Delete</button>
+                          <button class="btn btn-default action_confirm" href="{{ action('ProjectsController@destroy', array($project->id)) }}" data-method="delete">Delete</button>
                     </td>
                 </tr>
             @endforeach

@@ -12,9 +12,8 @@ class ProjectsController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('sentry.admin');
+		$this->middleware('auth');
 	}
-
 
 	public function dashboard()
 	{
@@ -22,10 +21,8 @@ class ProjectsController extends Controller {
 		$data['features'] = Feature::all();
 		$data['bugs'] = Bug::all();
 
-
 		return view('dashboard', $data);
 	}
-
 
 	/**
 	 * Display a listing of the resource.

@@ -1,10 +1,4 @@
-@extends(config('sentinel.layout'))
-
-{{-- Web site Title --}}
-@section('title')
-@parent
-Bugs
-@stop
+@extends('layouts.app')
 
 @section('css')
 
@@ -56,14 +50,14 @@ Bugs
                     <td>@if(is_null($bug->status)) none @else {{ Greengo\Models\BugStatus::findOrFail($bug->status)->title }} @endif</td>
                     <td><span class="btn-group text-nowrap">
 
-                      @if ($bug->created_by == Sentry::getUser()->id)
+                      @if ($bug->created_by == Auth::user()->id)
                         @if ($bug->closed == 0)
                           <button class="btn btn-default" type="button" onClick="location.href='{{ action('BugsController@close', array($bug->id)) }}'">Close</button>
                         @elseif($bug->closed == 1)
                           <button class="btn btn-default" type="button" onClick="location.href='{{ action('BugsController@open', array($bug->id)) }}'">Open</button>
                         @endif
                           <button class="btn btn-default" type="button" onClick="location.href='{{ action('BugsController@edit', array($bug->id)) }}'">Edit</button>
-                          <button class="btn btn-default action_confirm" href="{{ action('BugsController@destroy', array($bug->id)) }}" data-token="{{ Session::getToken() }}" data-method="delete">Delete</button>
+                          <button class="btn btn-default action_confirm" href="{{ action('BugsController@destroy', array($bug->id)) }}" data-method="delete">Delete</button>
                       @endif
 
                     </span>

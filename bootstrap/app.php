@@ -12,7 +12,7 @@
 */
 
 $app = new Illuminate\Foundation\Application(
-	realpath(__DIR__.'/../')
+    realpath(__DIR__.'/../')
 );
 
 /*
@@ -27,18 +27,18 @@ $app = new Illuminate\Foundation\Application(
 */
 
 $app->singleton(
-	'Illuminate\Contracts\Http\Kernel',
-	'Greengo\Http\Kernel'
+    Illuminate\Contracts\Http\Kernel::class,
+    Greengo\Http\Kernel::class
 );
 
 $app->singleton(
-	'Illuminate\Contracts\Console\Kernel',
-	'Greengo\Console\Kernel'
+    Illuminate\Contracts\Console\Kernel::class,
+    Greengo\Console\Kernel::class
 );
 
 $app->singleton(
-	'Illuminate\Contracts\Debug\ExceptionHandler',
-	'Greengo\Exceptions\Handler'
+    Illuminate\Contracts\Debug\ExceptionHandler::class,
+    Greengo\Exceptions\Handler::class
 );
 
 /*

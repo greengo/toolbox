@@ -1,4 +1,4 @@
-@extends(config('sentinel.layout'))
+@extends('layouts.app')
 
 {{-- Web site Title --}}
 @section('title')
@@ -62,14 +62,14 @@ Features
                 <tr>
                     <td><a href="{{ action('FeaturesController@show', array($feature->id)) }}">{{ $feature->title }}</a></td>
                     <td>{{ Greengo\Models\Project::findOrFail($feature->project)->title }} </td>
-                    <td>{{ Greengo\User::findOrFail($feature->created_by)->FullName }} </td>
+                    <td>{{ Greengo\User::findOrFail($feature->created_by)->name }} </td>
                     <td>{{ $feature->progress }}% </td>
                     <td><span class="btn-group text-nowrap">
 
 
-                      @if ($feature->created_by == Sentry::getUser()->id)
+                      @if ($feature->created_by == Auth::user()->id)
                           <button class="btn btn-default" type="button" onClick="location.href='{{ action('FeaturesController@edit', array($feature->id)) }}'">Edit</button>
-                          <button class="btn btn-default action_confirm" href="{{ action('FeaturesController@destroy', array($feature->id)) }}" data-token="{{ Session::getToken() }}" data-method="delete">Delete</button>
+                          <button class="btn btn-default action_confirm" href="{{ action('FeaturesController@destroy', array($feature->id)) }}" data-method="delete">Delete</button>
                       @endif
 
                     </span>

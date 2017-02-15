@@ -1,7 +1,10 @@
+
+{{ Form::hidden('software_version', '0.0') }}
+
 <div class="form-group @if ($errors->has('project')) has-error @endif">
     {!! Form::label('project', 'Project:', array('class' => 'control-label col-lg-3')) !!}
     <div class="col-lg-6">
-      {!! Form::select('project', [null => 'Please Select'] + Greengo\Models\Project::all()->lists('title', 'id'), null, array('class' => 'form-control')) !!}
+      {!! Form::select('project', [null => 'Please Select'] + Greengo\Models\Project::all()->pluck('title', 'id')->toArray(), null, array('class' => 'form-control')) !!}
       {{ ($errors->has('project') ?  $errors->first('project') : '') }}
     </div>
 </div>
@@ -9,7 +12,7 @@
 <div class="form-group @if ($errors->has('assigned_to')) has-error @endif">
     {!! Form::label('assigned_to', 'Assigned To:', array('class' => 'control-label col-lg-3')) !!}
     <div class="col-lg-6">
-      {!! Form::select('assigned_to', [null => 'Please Select'] + Greengo\User::all()->lists('FullName', 'id'), null, array('class' => 'form-control')) !!}
+      {!! Form::select('assigned_to', [null => 'Please Select'] + Greengo\User::all()->pluck('name', 'id')->toArray(), null, array('class' => 'form-control')) !!}
       {{ ($errors->has('assigned_to') ?  $errors->first('assigned_to') : '') }}
     </div>
 </div>
@@ -53,8 +56,6 @@
       {{ ($errors->has('observed_behaviour') ?  $errors->first('observed_behaviour') : '') }}
     </div>
 </div>
-
-
 
 <div class="form-group">
     <div class="col-lg-offset-3 col-lg-6">

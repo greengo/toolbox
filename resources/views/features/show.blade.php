@@ -1,4 +1,4 @@
-@extends(config('sentinel.layout'))
+@extends('layouts.app')
 
 {{-- Web site Title --}}
 @section('title')
@@ -13,10 +13,10 @@ View Feature
     <div class='page-header'>
         <div class='btn-toolbar pull-right'>
           <div class='btn-group'>
-              @if ($feature->created_by == Sentry::getUser()->id)
+              @if ($feature->created_by == Auth::user()->id)
                 <a class='btn btn-primary' href="{{ route('features.edit', [$feature->id]) }}">Edit Feature</a>
               @endif
-              @if ($feature->assigned_to == Sentry::getUser()->id)
+              @if ($feature->assigned_to == Auth::user()->id)
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#statusForm">Set Status</button>
               @endif
           </div>
@@ -59,7 +59,7 @@ View Feature
         <div class="form-group @if ($errors->has('status')) has-error @endif">
             {!! Form::label('status', 'Project:', array('class' => 'control-label col-lg-3')) !!}
             <div class="col-lg-6">
-              {!! Form::select('status', [null => 'Please Select'] + Greengo\Models\FeatureStatus::all()->lists('title', 'id'), null, array('class' => 'form-control')) !!}
+              {!! Form::select('status', [null => 'Please Select'] + Greengo\Models\FeatureStatus::all()->pluck('title', 'id')->toArray(), null, array('class' => 'form-control')) !!}
               {{ ($errors->has('status') ?  $errors->first('status') : '') }}
             </div>
         </div>
