@@ -32,8 +32,8 @@ View Feature
 
         <p><b>Project: </b>{{ Greengo\Models\Project::findOrFail($feature->project)->title }}</p>
         <p><b>Date Created: </b>{{ $feature->created_at }}</p>
-        <p><b>Created By: </b>{{ Greengo\User::findOrFail($feature->created_by)->FullName }}</p>
-        @if($feature->assigned_to > 0)<p><b>Assigned To: </b>{{ Greengo\User::findOrFail($feature->assigned_to)->FullName }}</p>@endif
+        <p><b>Created By: </b>{{ Greengo\User::findOrFail($feature->created_by)->name }}</p>
+        @if($feature->assigned_to > 0)<p><b>Assigned To: </b>{{ Greengo\User::findOrFail($feature->assigned_to)->name }}</p>@endif
         <p><b>Priority: </b>{{ $feature->priority }}</p>
         <p><b>Status: </b>@if(is_null($feature->status)) none @else {{ Greengo\Models\FeatureStatus::findOrFail($feature->status)->title }} @endif</td></tr>
         <p><b>Progress: </b>{{ $feature->progress }}%</p>
